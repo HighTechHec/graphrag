@@ -1,35 +1,40 @@
 name: Feature Request
-description: File a feature request
+description: Propose a new feature or enhancement
 labels: ["enhancement"]
-title: "[Feature Request]: <title>"
-
 body:
-  - type: checkboxes
-    id: existingcheck
+  - type: dropdown
+    id: area
     attributes:
-      label: Do you need to file an issue?
-      description: Please help us manage our time by avoiding duplicates and common questions with the steps below.
+      label: Area
+      description: Which part of the system does this affect?
       options:
-        - label: I have searched the existing issues and this feature is not already filed.
-        - label: My model is hosted on OpenAI or Azure. If not, please look at the "model providers" issue and don't file a new one here.
-        - label: I believe this is a legitimate feature request, not just a question. If this is a question, please use the Discussions area.
-  - type: textarea
-    id: problem_description
-    attributes:
-      label: Is your feature request related to a problem? Please describe.
-      description: A clear and concise description of what the problem is.
-      placeholder: What problem are you trying to solve?
+        - Core modules
+        - Agent roster
+        - Infrastructure (Docker, Tailscale, Prometheus)
+        - Discord Bridge
+        - CLI / Console scripts
+        - Configuration
+        - Documentation
+        - Other
+    validations:
+      required: true
 
   - type: textarea
-    id: solution_description
+    id: description
     attributes:
-      label: Describe the solution you'd like
-      description: A clear and concise description of what you want to happen.
-      placeholder: How do you envision the solution?
+      label: Description
+      description: What do you want to add or change?
+    validations:
+      required: true
 
   - type: textarea
-    id: additional_context
+    id: motivation
     attributes:
-      label: Additional context
-      description: Add any other context or screenshots about the feature request here.
-      placeholder: Any additional information
+      label: Motivation
+      description: Why is this needed? What problem does it solve?
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Other approaches you have thought about
