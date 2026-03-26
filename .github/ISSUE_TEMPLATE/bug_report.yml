@@ -1,71 +1,80 @@
 name: Bug Report
-description: File a bug report
-title: "[Bug]: <title>"
-labels: ["bug", "triage"]
-
+description: Report a bug in JAX-PRIME ONE_MIND
+labels: ["bug"]
 body:
-  - type: checkboxes
-    id: existingcheck
+  - type: dropdown
+    id: module
     attributes:
-      label: Do you need to file an issue?
-      description: Please help us manage our time by avoiding duplicates and common questions with the steps below.
+      label: Module
+      description: Which core module is affected?
       options:
-        - label: I have searched the existing issues and this bug is not already filed.
-        - label: My model is hosted on OpenAI or Azure. If not, please look at the "model providers" issue and don't file a new one here.
-        - label: I believe this is a legitimate bug, not just a question. If this is a question, please use the Discussions area.
+        - AURA-SPINE (event bus)
+        - Smart Detective (GPU monitoring)
+        - Agent SRE (self-healing)
+        - Elastic Router (model routing)
+        - Council of Five (governance)
+        - Orchestrator (task management)
+        - Discord Bridge (bot interface)
+        - Server API (HTTP endpoints)
+        - Telemetry Exporter (Prometheus)
+        - Self-Healer
+        - Result Collector
+        - Boot Sequence
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Critical (system down)
+        - High (major feature broken)
+        - Medium (degraded functionality)
+        - Low (cosmetic / minor)
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
-      label: Describe the bug
-      description: A clear and concise description of what the bug is.
-      placeholder: What went wrong?
-  - type: textarea
-    id: reproduce
-    attributes:
-      label: Steps to reproduce
-      description: |
-        Steps to reproduce the behavior:
+      label: Description
+      description: What happened?
+      placeholder: Clear description of the bug
+    validations:
+      required: true
 
-        1. Step 1
-        2. Step 2
-        3. ...
-        4. See error
-      placeholder: How can we replicate the issue?
   - type: textarea
-    id: expected_behavior
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this?
+      placeholder: |
+        1. Run `jax-sre`
+        2. Wait for health check cycle
+        3. Observe error in logs
+
+  - type: textarea
+    id: expected
     attributes:
       label: Expected Behavior
-      description: A clear and concise description of what you expected to happen.
-      placeholder: What should have happened?
-  - type: textarea
-    id: configused
-    attributes:
-      label: GraphRAG Config Used
-      description: The GraphRAG configuration used for the run.
-      placeholder: The settings.yaml content or GraphRAG configuration
-      value: |
-        ```yaml
-        # Paste your config here
+      description: What should have happened?
 
-        ```
   - type: textarea
-    id: screenshotslogs
+    id: logs
     attributes:
-      label: Logs and screenshots
-      description: If applicable, add screenshots and logs to help explain your problem.
-      placeholder: Add logs and screenshots here
+      label: Logs / Error Output
+      description: Paste relevant logs or error messages
+      render: shell
+
   - type: textarea
-    id: additional_information
+    id: environment
     attributes:
-      label: Additional Information
-      description: |
-        - GraphRAG Version: e.g., v0.1.1
-        - Operating System: e.g., Windows 10, Ubuntu 20.04
-        - Python Version: e.g., 3.8
-        - Related Issues: e.g., #1
-        - Any other relevant information.
-      value: |
-        - GraphRAG Version:
-        - Operating System:
-        - Python Version:
-        - Related Issues:
+      label: Environment
+      description: System details
+      placeholder: |
+        OS: Windows 11
+        Python: 3.13.9
+        GPU: RTX 5090 24GB
+        CUDA: 13.1
